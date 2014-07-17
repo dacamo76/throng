@@ -11,12 +11,12 @@
   ["educations" "certifications" "bound-account-types" "im-accounts"
    "twitter-accounts" "primary-twitter-account" "positions" "email-address"
    "skills" "last-modified-timestamp" "specialties" "summary" "id" "first-name"
-   "last-name" "headline" "location" "num-connections-capped" "num-connections"])
+   "last-name" "headline" "location"])
 
 (def default-connections-fields
   ["positions" "id" "first-name" "last-name" "headline" "location" "industry"
    "distance" "current-status" "api-standard-profile-request"
-   "member-url-resources" "num-connections-capped"])
+   "member-url-resources"])
 
 (defn sandwich [s] (str ":(" s ")"))
 
