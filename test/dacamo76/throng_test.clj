@@ -44,3 +44,13 @@
                 :empty-values {:values [] :_total 50}}]
       (is (collections= [:empty-values :connections :skills]
                         (coll-keys data))))))
+
+(deftest update-values-test
+  (testing "update-values"
+    (let [m {:1 1, :2 2, :3 3, :4 4}]
+      (is (= {:1 1, :2 3, :3 4, :4 4}
+             (update-values m [:2 :3] inc)))
+      (is (= {:1 11, :2 2, :3 13, :4 14}
+             (update-values m [:1 :3 :4] + 10)))
+      (is (= m (update-values m [] inc)))
+      (is (= m (update-values m nil nil))))))

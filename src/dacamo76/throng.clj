@@ -33,7 +33,7 @@
        sandwich
        (str "connections")))
 
-(defn uv
+(defn update-values
   [m ks f & args]
   (reduce #(apply update-in %1 [%2] f args) m ks))
 
@@ -51,7 +51,7 @@
         request-meta (meta response)
         colls (coll-keys data)]
     (with-meta
-      (uv data colls #(with-meta (:values % []) (dissoc % :values)))
+      (update-values data colls #(with-meta (:values % []) (dissoc % :values)))
       {:request request-meta
        :response response-meta})))
 
