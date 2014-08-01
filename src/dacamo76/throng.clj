@@ -91,7 +91,7 @@
   [response]
   (let [m (body response)
         colls (for [[k v] m
-                    :when (:_total (meta v))]
+                    :when (coll? v)]
                 k)]
     (reduce #(assoc %1 %2 (pagination %2 m)) m colls)))
 
