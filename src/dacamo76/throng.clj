@@ -96,20 +96,17 @@
     (reduce #(assoc %1 %2 (pagination %2 m)) m colls)))
 
 (defn connections-request
-  [oauth2-token]
+  [oauth2-token & {:as params}]
   (let [fields (connections-fields)
-        opts {:headers  {"x-li-format" "json"}
-              :query-params {:oauth2_access_token oauth2-token}}]
+        opts {:headers {"x-li-format" "json"}
+              :query-params (merge params {:oauth2_access_token oauth2-token})}]
     (paging-body (people-request opts fields))))
 
 (defn full-request
-  [oauth2-token]
+  [oauth2-token & {:as params}]
   (let [fields (s/join ","
                        [(profile-fields)
                         (connections-fields)])
-        response (people-request
-                  {:headers  {"x-li-format" "json"}
-                   :query-params {:oauth2_access_token oauth2-token
-                                  :secure-urls true}}
-                  fields)]
-     (paging-body response)))
+        opts {:headers {"x-li-format" "json"}
+              :query-params (merge params {:oauth2_access_token oauth2-token})}]
+    (paging-body (people-request opts fields))))
