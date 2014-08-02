@@ -40,7 +40,8 @@ user> (def connections t/connections-request token))
 user> (keys connections)
 (:connections)
 user> (->> connections :connections count)
-150```
+150
+```
 
 I think by default the API returns 5,000 connections
 on each request.
