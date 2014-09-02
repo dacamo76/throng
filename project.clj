@@ -1,6 +1,6 @@
 (defproject dacamo76/throng "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "A Clojure client library for LinkedIn's people API"
+  :url "https://github.com/dacamo76/throng"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
