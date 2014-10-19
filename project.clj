@@ -1,4 +1,4 @@
-(defproject dacamo76/throng "0.0.1"
+(defproject dacamo76/throng "0.0.2-SNAPSHOT"
   :description "A Clojure client library for LinkedIn's people API"
   :url "https://github.com/dacamo76/throng"
   :license {:name "Eclipse Public License"
