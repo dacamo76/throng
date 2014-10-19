@@ -13,9 +13,9 @@ A Clojure library to connect to the LinkedIn
 Basic usage of Throng focuses on the functions ```full-request```
 and ```connections-request```.
 
-```full-request``` returns a user's full profile along with all their connections.
-Connections is a lazy sequence that implements paging and makes a request
-to the server as needed.
+```full-request``` returns a user's full profile.
+The user's connections are returned as a lazy sequence that implements paging
+and makes calls to the server as needed.
 
 ````connections-request```` returns only a user's connections.
 
@@ -46,8 +46,8 @@ user> (->> connections :connections count)
 I think by default the API returns 5,000 connections
 on each request.
 This may result in a delay when making the original request,
-if you don't need all connections, you can pass in an extra paramter
-option to the request function.
+if you don't need all connections, say you only want 10,
+you can pass in an extra parameter option to the request function.
 
 ````clojure
 ;;; Get connections in batches of 10.
@@ -57,7 +57,7 @@ user> (def connections (t/connections-request token :count 10))
 ;;; Quickly get first 2 connections. Response only has 10 connections.
 user> (->> connections :connections (take 2))
 
-;;; DON'T DO THIS. This will make 15 API request for the 150 connections
+;;; DON'T DO THIS. This will make 15 API requests for the 150 connections
 user> (->> connections :connections count)
 150
 ```
@@ -67,10 +67,10 @@ user> (->> connections :connections count)
 A low-level ```people-request``` function is available that returns
 the [Ring-style response maps](https://github.com/ring-clojure/ring/blob/master/SPEC)
 returned by [clj-http-lite](https://github.com/hiredman/clj-http-lite).
-This can be combined with ```paging-body``` to return a map
-Both ```full-request``` and ```connections-request``` build on it.
+This can be combined with ```paging-body``` to return a map.
+Both ```full-request``` and ```connections-request``` are built on top of ``people-request``.
 
-Example usage of ```people-request```. This is a basic connections-reuqets.
+Example usage of ```people-request```. This is a basic connections-request.
 ```clojure
 user> (def peeps (let [fields (t/connections-fields)
      params {:headers {"x-li-format" "json"}
